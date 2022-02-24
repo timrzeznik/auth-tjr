@@ -9,6 +9,10 @@ class SessionsController < ApplicationController
         @user = User.where({ email: params["email"] })[0]
         if @user
             if BCrypt::Password.new(@user.password) == params["password"]
+                #cookies: {}
+                #session: {}
+
+                session["user_id"] = @user.id
                 flash[:notice] = "You logged in successfully!"
                 redirect_to "/companies"
             else
@@ -21,4 +25,9 @@ class SessionsController < ApplicationController
 
     end
 
+    def destroy
+        session["user_id"] = nil
+        flash[:notice] = "Goodbye"
+        redirect_to "/sessions/new"
+    end
 end
