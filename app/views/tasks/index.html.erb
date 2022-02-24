@@ -1,19 +1,26 @@
 <h1>Do the TODOs</h1>
 
-<%= form_with model: @task do |form| %>
-  <%= form.text_field "description" %>
-  <%= form.submit "Add new task" %>
-<% end %>
+<% if @current_user %>
 
-<table>
-  <% for task in @tasks %>
-    <tr>
-      <td>
-        <%= task.description %>
-      </td>
-      <td>
-        <%= button_to "Complete", task, method: :delete %>
-      </td>
-    </tr>
+  <%= form_with model: @task do |form| %>
+    <%= form.text_field "description" %>
+    <%= form.submit "Add new task" %>
   <% end %>
+
+  <table>
+    <% for task in @tasks %>
+      <tr>
+        <td>
+          <%= task.description %>
+        </td>
+        <td>
+          <%= button_to "Complete", task, method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+
 </table>
+
+<% else %>
+  You need to log in!
+<% end%>
