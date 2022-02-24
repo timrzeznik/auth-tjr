@@ -11,13 +11,17 @@
 
   <body>
     <p>
-      <a href="/sessions/new">Login</a>
+      
+      <a href="/sessions/new">Login</a> |
+
       <a href="/users/new">Sign Up</a>
     </p>
 
     <p>
-      <!-- This is a message that appears at the top. disappears after refresh! -->
+      <!-- This is a message that appears at the top. disappears after refresh! 
+      It is essentially a "one time use" cookie -->
       <%= flash[:notice] %>
+
     </p>
 
     <%= yield %>
